@@ -31,7 +31,7 @@ classroom_id_mapping = {
     "行政楼-四层东区自习室": 13,
     "行政楼-四层中区自习室": 14,
     "行政楼-四层西区自习室": 15,
-    "电视台楼-二层自习室": 12
+    "电视台楼-二层自习室": 12,
 }
 
 # 常量定义
@@ -96,12 +96,9 @@ def get_build_id(classname):
     return build_id
 
 
-
 def get_segment(build_id, nowday):
     try:
-        post_data = {
-            "build_id": build_id
-        }
+        post_data = {"build_id": build_id}
 
         request_headers = {
             "Content-Type": "application/json",
@@ -110,20 +107,22 @@ def get_segment(build_id, nowday):
             "lang": "zh",
             "X-Requested-With": "XMLHttpRequest",
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
-                          "Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
+            "Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
             "Origin": "http://libyy.qfnu.edu.cn",
             "Referer": "http://libyy.qfnu.edu.cn/h5/index.html",
             "Accept-Encoding": "gzip, deflate",
-            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,pl;q=0.5"
+            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,pl;q=0.5",
         }
 
-        res = send_post_request_and_save_response(URL_CLASSROOM_DETAIL_INFO, post_data, request_headers)
+        res = send_post_request_and_save_response(
+            URL_CLASSROOM_DETAIL_INFO, post_data, request_headers
+        )
         segment = None
         # logger.info(res)
         # 提取"今天"或者"明天"的教室的 segment
-        for item in res['data']:
-            if item['day'] == nowday:
-                segment = item['times'][0]['id']
+        for item in res["data"]:
+            if item["day"] == nowday:
+                segment = item["times"][0]["id"]
                 # logger.info(segment)
                 break
 
@@ -157,13 +156,13 @@ def encrypt(text):
     key = get_key()
     # 目前获取到的加密密钥
     iv = "ZZWBKJ_ZHIHUAWEI"
-    key_bytes = key.encode('utf-8')
-    iv_bytes = iv.encode('utf-8')
+    key_bytes = key.encode("utf-8")
+    iv_bytes = iv.encode("utf-8")
 
     cipher = AES.new(key_bytes, AES.MODE_CBC, iv_bytes)
-    ciphertext_bytes = cipher.encrypt(pad(text.encode('utf-8'), AES.block_size))
+    ciphertext_bytes = cipher.encrypt(pad(text.encode("utf-8"), AES.block_size))
 
-    return base64.b64encode(ciphertext_bytes).decode('utf-8')
+    return base64.b64encode(ciphertext_bytes).decode("utf-8")
 
 
 # 定义解密函数
@@ -174,8 +173,8 @@ def decrypt(ciphertext):
     iv = "ZZWBKJ_ZHIHUAWEI"
 
     # 将密钥和初始化向量转换为 bytes 格式
-    key_bytes = key.encode('utf-8')
-    iv_bytes = iv.encode('utf-8')
+    key_bytes = key.encode("utf-8")
+    iv_bytes = iv.encode("utf-8")
 
     # 将密文进行 base64 解码
     ciphertext = base64.b64decode(ciphertext)
@@ -185,18 +184,14 @@ def decrypt(ciphertext):
     decrypted_bytes = cipher.decrypt(ciphertext)
 
     # 去除解密后的填充
-    decrypted_text = unpad(decrypted_bytes, AES.block_size).decode('utf-8')
+    decrypted_text = unpad(decrypted_bytes, AES.block_size).decode("utf-8")
 
     return decrypted_text
 
 
 def get_member_seat(auth):
     try:
-        post_data = {
-            "page": 1,
-            "limit": 3,
-            "authorization": auth
-        }
+        post_data = {"page": 1, "limit": 3, "authorization": auth}
         request_headers = {
             "Content-Type": "application/json",
             "Connection": "keep-alive",
@@ -204,15 +199,17 @@ def get_member_seat(auth):
             "lang": "zh",
             "X-Requested-With": "XMLHttpRequest",
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, "
-                          "like Gecko)"
-                          "Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
+            "like Gecko)"
+            "Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
             "Origin": "http://libyy.qfnu.edu.cn",
             "Referer": "http://libyy.qfnu.edu.cn/h5/index.html",
             "Accept-Encoding": "gzip, deflate",
             "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,pl;q=0.5",
-            "Authorization": auth
+            "Authorization": auth,
         }
-        res = send_post_request_and_save_response(URL_CHECK_STATUS, post_data, request_headers)
+        res = send_post_request_and_save_response(
+            URL_CHECK_STATUS, post_data, request_headers
+        )
         return res
         # logger.info(res)
 
@@ -241,20 +238,22 @@ def get_seat_info(build_id, segment, nowday):
                     "lang": "zh",
                     "X-Requested-With": "XMLHttpRequest",
                     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, "
-                                  "like Gecko)"
-                                  "Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
+                    "like Gecko)"
+                    "Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
                     "Origin": "http://libyy.qfnu.edu.cn",
                     "Referer": "http://libyy.qfnu.edu.cn/h5/index.html",
                     "Accept-Encoding": "gzip, deflate",
-                    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,pl;q=0.5"
+                    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,pl;q=0.5",
                 }
 
-                res = send_post_request_and_save_response(URL_CLASSROOM_SEAT, post_data, request_headers)
+                res = send_post_request_and_save_response(
+                    URL_CLASSROOM_SEAT, post_data, request_headers
+                )
                 # logger.info(res)
                 free_seats = []
-                for seat in res['data']:
-                    if seat['status_name'] == '空闲':
-                        free_seats.append({'id': seat['id'], 'no': seat['no']})
+                for seat in res["data"]:
+                    if seat["status_name"] == "空闲":
+                        free_seats.append({"id": seat["id"], "no": seat["no"]})
 
                 # logger.info(free_seats)
                 time.sleep(1)
