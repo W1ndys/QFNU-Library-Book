@@ -513,33 +513,6 @@ def select_seat(build_id, segment, nowday):
         sys.exit()
 
 
-# 取消座位预约（慎用！！！）
-def cancel_seat(seat_id):
-    global SEAT_RESULT
-    try:
-        post_data = {"id": seat_id, "authorization": AUTH_TOKEN}
-        request_headers = {
-            "Content-Type": "application/json",
-            "Connection": "keep-alive",
-            "Accept": "application/json, text/plain, */*",
-            "lang": "zh",
-            "X-Requested-With": "XMLHttpRequest",
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, "
-            "like Gecko)"
-            "Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
-            "Origin": "http://libyy.qfnu.edu.cn",
-            "Referer": "http://libyy.qfnu.edu.cn/h5/index.html",
-            "Accept-Encoding": "gzip, deflate",
-            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,pl;q=0.5",
-            "Authorization": AUTH_TOKEN,
-        }
-        SEAT_RESULT = send_post_request_and_save_response(
-            URL_CANCEL_SEAT, post_data, request_headers
-        )
-    except KeyError:
-        logger.info("数据解析错误")
-
-
 def check_time():
     global MESSAGE
     # 获取当前时间
