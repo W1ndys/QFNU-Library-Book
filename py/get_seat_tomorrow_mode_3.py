@@ -504,9 +504,6 @@ def select_seat(build_id, segment, nowday):
             select_id = random_get_seat(data)
             post_to_get_seat(select_id, segment)
             continue
-        else:
-            logger.error(f"未知的模式: {MODE}")
-            break
 
     # 如果超过最大重试次数仍然没有获取到座位,则退出程序
     if retries >= 2000:
