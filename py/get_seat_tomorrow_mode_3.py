@@ -254,7 +254,7 @@ def send_message():
     if PUSH_METHOD == "BARK":
         send_message_bark()
     if PUSH_METHOD == "DD":
-        dingtalk("脚本执行通知", MESSAGE, DD_BOT_TOKEN, DD_BOT_SECRET)
+        dingtalk("图书馆预约模式3通知", MESSAGE, DD_BOT_TOKEN, DD_BOT_SECRET)
 
 
 # 推送到钉钉
@@ -590,7 +590,7 @@ def get_info_and_select_seat():
 if __name__ == "__main__":
     try:
         read_config_from_yaml()
+        print_variables()
         check_time()
-
     except KeyboardInterrupt:
         logger.info("主动退出程序，程序将退出。")
