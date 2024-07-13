@@ -18,7 +18,6 @@ from get_info import (
     get_build_id,
     encrypt,
     get_member_seat,
-    decrypt,
 )
 
 import json
