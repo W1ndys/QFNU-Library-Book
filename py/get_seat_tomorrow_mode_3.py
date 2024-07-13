@@ -498,13 +498,12 @@ def select_seat(build_id, segment, nowday):
         logger.info(f"开始第 {retries+1} 次尝试获取座位")
         retries += 1
 
-        data = get_seat_info(build_id, segment, nowday) if MODE in ["1", "3"] else None
+        data = get_seat_info(build_id, segment, nowday)
 
         if data:
             select_id = random_get_seat(data)
             post_to_get_seat(select_id, segment)
             continue
-
         else:
             logger.error(f"未知的模式: {MODE}")
             break
@@ -558,6 +557,7 @@ def check_time():
     # time_difference = 0
     # 如果距离时间过长，自动停止程序
     if time_difference > 1200:  # 1200秒=20分钟
+        # get_info_and_select_seat()
         logger.info("距离预约时间过长，程序将自动停止。")
         MESSAGE += "\n距离预约时间过长，程序将自动停止"
         send_message()
@@ -590,7 +590,7 @@ def get_info_and_select_seat():
 if __name__ == "__main__":
     try:
         read_config_from_yaml()
-        print_variables()
+        # print_variables()
         check_time()
     except KeyboardInterrupt:
         logger.info("主动退出程序，程序将退出。")
