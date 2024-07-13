@@ -433,13 +433,6 @@ def check_reservation_status():
         send_message()
         sys.exit()
 
-    # 生成范围内的随机整数，直到生成一个未出现过的数
-    # while True:
-    #     random_num = random.randint(start, end)
-    #     if random_num not in USED_SEAT:
-    #         USED_SEAT.append(random_num)
-    #         return random_num
-
 
 # 预约函数
 def post_to_get_seat(select_id, segment):
