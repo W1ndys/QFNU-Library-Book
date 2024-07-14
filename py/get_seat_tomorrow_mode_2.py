@@ -522,9 +522,6 @@ def select_seat(build_id, segment, nowday):
         logger.info(f"*" * 50)
         logger.info(f"开始第 {retries+1} 次尝试获取座位")
         retries += 1
-
-        data = get_seat_info(build_id, segment, nowday) if MODE in ["1", "3"] else None
-
         seat_id = generate_unique_random()
         logger.info(f"随机选择的座位为: {seat_id}")
         if seat_id == False:
