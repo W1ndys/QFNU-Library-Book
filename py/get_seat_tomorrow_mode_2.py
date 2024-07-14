@@ -13,7 +13,6 @@ from telegram import Bot
 from get_bearer_token import get_bearer_token
 from get_info import (
     get_date,
-    get_seat_info,
     get_segment,
     get_build_id,
     encrypt,
