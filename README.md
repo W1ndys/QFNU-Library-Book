@@ -22,6 +22,16 @@ pip install -r requirements.txt
 1. `USERNAME`：图书馆账号
 2. `PASSWORD`：图书馆密码
 
+### 程序介绍
+
+相较于原作者的程序，本项目删除了预约当日的设置，只保留预约明天的设置。
+
+- `py/get_seat_tomorrow_mode_1.py`：预约模式 1，预约明天的座位，仅适用于西校区图书馆的三个自习室，个人优选了有插座的位置。
+- `py/get_seat_tomorrow_mode_2.py`：预约模式 2，预约明天的座位，指定模式，请预先根据 json/seat_info 中各个自习室的真实位置('name')获取座位代号('id')，请输入对应自习室的对应 id。
+- `py/get_seat_tomorrow_mode_3.py`：预约模式 3，预约明天的座位，默认模式，全随机预约，速度最快，成功的概率最大。
+- `py/sign_out.py`：签退程序，签退图书馆。
+- `py/checkin.py`：签到程序，签到图书馆。该脚本属于违规操作，请务必谨慎使用。请务必在合理的时间段内执行脚本
+
 ## 开源许可协议
 
 本项目是由 [W1ndys](https://github.com/W1ndys) 基于 [上杉九月](https://github.com/sakurasep) 的 开源项目 [qfnuLibraryBook](https://github.com/sakurasep/qfnuLibraryBook) 二次开发，使用 CC BY-NC 4.0 协议进行授权，拷贝、分享或基于此进行创作时请遵守协议内容：
