@@ -519,12 +519,14 @@ def select_seat(build_id, segment, nowday):
     retries = 0  # 添加重试计数器
 
     while not FLAG and retries < 2000:
+        logger.info(f"*" * 50)
         logger.info(f"开始第 {retries+1} 次尝试获取座位")
         retries += 1
 
         data = get_seat_info(build_id, segment, nowday) if MODE in ["1", "3"] else None
 
         seat_id = generate_unique_random()
+        logger.info(f"随机选择的座位为: {seat_id}")
         if seat_id == False:
             logger.info("指定模式无可用座位, 程序将自动退出")
             MESSAGE += "\n指定模式无可用座位, 程序将自动退出"
@@ -556,10 +558,11 @@ def check_time():
     # time_difference = 0
     # 如果距离时间过长，自动停止程序
     if time_difference > 1200:  # 1200秒=20分钟
-        logger.info("距离预约时间过长，程序将自动停止。")
-        MESSAGE += "\n距离预约时间过长，程序将自动停止"
-        send_message()
-        sys.exit()
+        get_info_and_select_seat()
+        # logger.info("距离预约时间过长，程序将自动停止。")
+        # MESSAGE += "\n距离预约时间过长，程序将自动停止"
+        # send_message()
+        # sys.exit()
     # 如果距离时间在合适的范围内, 将设置等待时间
     elif time_difference > 30:
         logger.info(f"程序等待{time_difference}秒后启动")
