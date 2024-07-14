@@ -498,12 +498,17 @@ def select_seat(build_id, segment, nowday):
         logger.info(f"开始第 {retries+1} 次尝试获取座位")
         retries += 1
 
-        data = get_seat_info(build_id, segment, nowday) if MODE in ["1", "3"] else None
-
-        if data:
+        data = get_seat_info(build_id, segment, nowday)
+        if not data:
+            logger.warning("获取座位信息失败，可能是时间段内不存在或该区域暂不可用")
+            MESSAGE += "\n获取座位信息失败，可能是时间段内不存在或该区域暂不可用"
+            send_message()
+            sys.exit()
+        else:
             new_data = [d for d in data if d["id"] not in EXCLUDE_ID]
             if new_data:
                 select_id = random_get_seat(new_data)
+                logger.info(f"随机选择的座位为: {select_id}")
                 post_to_get_seat(select_id, segment)
             else:
                 time.sleep(3)
@@ -531,10 +536,11 @@ def check_time():
     # time_difference = 0
     # 如果距离时间过长，自动停止程序
     if time_difference > 1200:  # 1200秒=20分钟
-        logger.info("距离预约时间过长，程序将自动停止。")
-        MESSAGE += "\n距离预约时间过长，程序将自动停止"
-        send_message()
-        sys.exit()
+        get_info_and_select_seat()
+        # logger.info("距离预约时间过长，程序将自动停止。")
+        # MESSAGE += "\n距离预约时间过长，程序将自动停止"
+        # send_message()
+        # sys.exit()
     # 如果距离时间在合适的范围内, 将设置等待时间
     elif time_difference > 30:
         logger.info(f"程序等待{time_difference}秒后启动")
@@ -564,6 +570,5 @@ if __name__ == "__main__":
     try:
         read_config_from_yaml()
         check_time()
-
     except KeyboardInterrupt:
         logger.info("主动退出程序，程序将退出。")
