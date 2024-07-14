@@ -415,7 +415,7 @@ def check_reservation_status():
                 logger.info("没有登录，将重新尝试获取 token")
                 get_auth_token()
             elif status == "该空间当前状态不可预约":
-                logger.info("此位置已被预约，重新获取座位")
+                logger.info("此位置已被预约或位置不可用")
             elif status == "取消成功":
                 logger.info("取消成功")
                 sys.exit()
