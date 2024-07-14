@@ -2,8 +2,30 @@
 
 曲阜师范大学图书馆预约程序
 
+## 快速启动
+
+### 前提条件
+
+- Python 3.12.1（Python 3.10+）
+- 运行环境：Windows 10、Ubuntu 20.04、MacOS 12.0+
+
+### 安装依赖
+
+```
+pip install -r requirements.txt
+```
+
+### 配置程序
+
+打开配置文件 `py/config.json` ，根据注释修改配置项。
+
+1. `USERNAME`：图书馆账号
+2. `PASSWORD`：图书馆密码
+
 ## 开源许可协议
+
 本项目是由 [W1ndys](https://github.com/W1ndys) 基于 [上杉九月](https://github.com/sakurasep) 的 开源项目 [qfnuLibraryBook](https://github.com/sakurasep/qfnuLibraryBook) 二次开发，使用 CC BY-NC 4.0 协议进行授权，拷贝、分享或基于此进行创作时请遵守协议内容：
+
 ```
 Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 
