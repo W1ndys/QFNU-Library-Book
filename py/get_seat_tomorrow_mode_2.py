@@ -589,6 +589,5 @@ if __name__ == "__main__":
     try:
         read_config_from_yaml()
         check_time()
-
     except KeyboardInterrupt:
         logger.info("主动退出程序，程序将退出。")
