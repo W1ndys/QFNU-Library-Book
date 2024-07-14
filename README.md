@@ -32,6 +32,21 @@ pip install -r requirements.txt
 - `py/sign_out.py`：签退程序，签退图书馆。
 - `py/checkin.py`：签到程序，签到图书馆。该功能属于**违规操作**，请务必**谨慎使用**。请务必在**合理的时间段内执行**脚本
 
+## 与原作者的区别
+
+二次开发者对原作者的程序进行了以下修改：
+
+- 分离了预约模式 1、2、3，并分别进行了部分重构。
+- 删除了预约当日的设置，只保留预约明天的设置。
+- 增加了钉钉机器人通知功能，可在配置文件中配置。
+- 增加了签到功能，感谢开发者 [@nakaii-002](https://github.com/nakaii-002) 的贡献。
+
+## 贡献者
+
+- [@W1ndys](https://github.com/W1ndys)：二次开发者
+- [@sakurasep](https://github.com/sakurasep)：原作者
+- [@nakaii-002](https://github.com/nakaii-002)：签到功能贡献者
+
 ## 开源许可协议
 
 本项目是由 [W1ndys](https://github.com/W1ndys) 基于 [上杉九月](https://github.com/sakurasep) 的 开源项目 [qfnuLibraryBook](https://github.com/sakurasep/qfnuLibraryBook) 二次开发，使用 CC BY-NC 4.0 协议进行授权，拷贝、分享或基于此进行创作时请遵守协议内容：
