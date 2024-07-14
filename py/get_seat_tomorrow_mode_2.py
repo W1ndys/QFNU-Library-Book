@@ -558,11 +558,10 @@ def check_time():
     # time_difference = 0
     # 如果距离时间过长，自动停止程序
     if time_difference > 1200:  # 1200秒=20分钟
-        get_info_and_select_seat()
-        # logger.info("距离预约时间过长，程序将自动停止。")
-        # MESSAGE += "\n距离预约时间过长，程序将自动停止"
-        # send_message()
-        # sys.exit()
+        logger.info("距离预约时间过长，程序将自动停止。")
+        MESSAGE += "\n距离预约时间过长，程序将自动停止"
+        send_message()
+        sys.exit()
     # 如果距离时间在合适的范围内, 将设置等待时间
     elif time_difference > 30:
         logger.info(f"程序等待{time_difference}秒后启动")
