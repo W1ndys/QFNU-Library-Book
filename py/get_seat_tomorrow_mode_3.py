@@ -40,7 +40,6 @@ URL_CANCEL_SEAT = "http://libyy.qfnu.edu.cn/api/Space/cancel"
 # 配置文件
 CHANNEL_ID = ""
 TELEGRAM_BOT_TOKEN = ""
-MODE = ""
 CLASSROOMS_NAME = ""
 SEAT_ID = ""
 DATE = ""
@@ -58,7 +57,7 @@ PUSH_METHOD = ""
 
 # 读取YAML配置文件并设置全局变量
 def read_config_from_yaml():
-    global CHANNEL_ID, TELEGRAM_BOT_TOKEN, CLASSROOMS_NAME, MODE, SEAT_ID, DATE, USERNAME, PASSWORD, GITHUB, BARK_EXTRA, BARK_URL, ANPUSH_TOKEN, ANPUSH_CHANNEL, PUSH_METHOD, DD_BOT_TOKEN, DD_BOT_SECRET
+    global CHANNEL_ID, TELEGRAM_BOT_TOKEN, CLASSROOMS_NAME, SEAT_ID, DATE, USERNAME, PASSWORD, GITHUB, BARK_EXTRA, BARK_URL, ANPUSH_TOKEN, ANPUSH_CHANNEL, PUSH_METHOD, DD_BOT_TOKEN, DD_BOT_SECRET
     current_dir = os.path.dirname(
         os.path.abspath(__file__)
     )  # 获取当前文件所在的目录的绝对路径
@@ -74,7 +73,6 @@ def read_config_from_yaml():
         CLASSROOMS_NAME = config.get(
             "CLASSROOMS_NAME", []
         )  # 将 CLASSROOMS_NAME 读取为列表
-        MODE = config.get("MODE", "")
         SEAT_ID = config.get("SEAT_ID", [])  # 将 SEAT_ID 读取为列表
         DATE = config.get("DATE", "")
         USERNAME = config.get("USERNAME", "")
@@ -206,7 +204,6 @@ def print_variables():
     variables = {
         "CHANNEL_ID": CHANNEL_ID,
         "TELEGRAM_BOT_TOKEN": TELEGRAM_BOT_TOKEN,
-        "MODE": MODE,
         "CLASSROOMS_NAME": CLASSROOMS_NAME,
         "SEAT_ID": SEAT_ID,
         "USERNAME": USERNAME,
