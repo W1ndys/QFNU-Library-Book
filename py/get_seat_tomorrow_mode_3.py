@@ -401,7 +401,7 @@ def check_reservation_status():
         # logger.info("预约状态：" + str(status))
         if status is not None:
             if status == "当前用户在该时段已存在座位预约，不可重复预约":
-                logger.info("重复预约, 请检查选择的时间段或是否已经预约成功")
+                logger.info("重复预约, 请检查选择的时间段内或是否已经预约成功")
                 check_book_seat()
                 FLAG = True
             elif status == "预约成功":
@@ -497,12 +497,18 @@ def select_seat(build_id, segment, nowday):
     while not FLAG and retries < 2000:
         logger.info(f"开始第 {retries+1} 次尝试获取座位")
         retries += 1
-
         data = get_seat_info(build_id, segment, nowday)
 
-        if data:
+        if not data:
+            logger.warning("获取座位信息失败，可能是时间段内不存在或该区域暂不可用")
+            MESSAGE += "\n获取座位信息失败，可能是时间段内不存在或该区域暂不可用"
+            send_message()
+            sys.exit()
+        else:
             select_id = random_get_seat(data)
+            logger.info(f"随机选择的座位为: {select_id}")
             post_to_get_seat(select_id, segment)
+            time.sleep(1)
             continue
 
     # 如果超过最大重试次数仍然没有获取到座位,则退出程序
@@ -527,11 +533,11 @@ def check_time():
     # time_difference = 0
     # 如果距离时间过长，自动停止程序
     if time_difference > 1200:  # 1200秒=20分钟
-        # get_info_and_select_seat()
-        logger.info("距离预约时间过长，程序将自动停止。")
-        MESSAGE += "\n距离预约时间过长，程序将自动停止"
-        send_message()
-        sys.exit()
+        get_info_and_select_seat()
+        # logger.info("距离预约时间过长，程序将自动停止。")
+        # MESSAGE += "\n距离预约时间过长，程序将自动停止"
+        # send_message()
+        # sys.exit()
     # 如果距离时间在合适的范围内, 将设置等待时间
     elif time_difference > 30:
         logger.info(f"程序等待{time_difference}秒后启动")
