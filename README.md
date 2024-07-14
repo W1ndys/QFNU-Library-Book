@@ -30,7 +30,7 @@ pip install -r requirements.txt
 - `py/get_seat_tomorrow_mode_2.py`：预约模式 2，预约明天的座位，指定模式，请预先根据 json/seat_info 中各个自习室的真实位置('name')获取座位代号('id')，请输入对应自习室的对应 id。
 - `py/get_seat_tomorrow_mode_3.py`：预约模式 3，预约明天的座位，默认模式，全随机预约，速度最快，成功的概率最大。
 - `py/sign_out.py`：签退程序，签退图书馆。
-- `py/checkin.py`：签到程序，签到图书馆。该脚本属于违规操作，请务必谨慎使用。请务必在合理的时间段内执行脚本
+- `py/checkin.py`：签到程序，签到图书馆。该脚本属于**违规操作**，请务必**谨慎使用**。请务必在**合理的时间段内执行**脚本
 
 ## 开源许可协议
 
