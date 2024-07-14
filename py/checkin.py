@@ -126,7 +126,7 @@ def send_message():
     if PUSH_METHOD == "BARK":
         send_message_bark()
     if PUSH_METHOD == "DD":
-        dingtalk("签退通知", MESSAGE, DD_BOT_TOKEN, DD_BOT_SECRET)
+        dingtalk("图书馆签到通知", MESSAGE, DD_BOT_TOKEN, DD_BOT_SECRET)
 
 
 # 推送到钉钉
@@ -290,7 +290,6 @@ def lib_rsv(bearer_token, user_name):
 if __name__ == "__main__":
     try:
         read_config_from_yaml()
-        # print_variables()
         get_auth_token()
         lib_rsv(AUTH_TOKEN, USERNAME)
 
