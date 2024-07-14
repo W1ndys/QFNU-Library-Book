@@ -1,4 +1,5 @@
 # 通知渠道选择,分别代表Telegram、Bark、Anpush、钉钉
+PUSH_METHOD: "DD"
 # 1.TG
 # 2.ANPUSH
 # 3.BARK
@@ -6,7 +7,6 @@
 # 要填写具体的字母而不是数字
 # 例如：
 # PUSH_METHOD: "TG"
-PUSH_METHOD: ""
 
 # Telegram 相关
 CHANNEL_ID: ""
@@ -21,10 +21,11 @@ ANPUSH_TOKEN: ""
 ANPUSH_CHANNEL: ""
 
 # 钉钉 token
+# 在群内添加机器人，获取机器人的 webhook 地址和签名，并将其填入 DD_BOT_TOKEN 和 DD_BOT_SECRET 中
 DD_BOT_TOKEN: ""
 DD_BOT_SECRET: ""
 
-# 账号授权相关
+# 账号授权相关，USERNAME 和 PASSWORD 请填入你的学号和密码
 USERNAME: ""
 PASSWORD: ""
 
@@ -37,10 +38,10 @@ GITHUB: false
 # 3.默认模式 全随机预约，速度最快，成功的概率最大
 # 4.自动签退 2024-03-15 系统关闭了10点后自动签退的功能，目前3次不签退将会被加入黑名单，所以新增了一个自动化签退的模式
 # 5.重新预约 重新预约当前已经预约的座位
-MODE: "2"
+
 SEAT_ID: # 这里只需要填首位号，函数会在这个范围内生成随机座位号
   - 7192
   - 7215
-DATE: "tomorrow"
+
 CLASSROOMS_NAME:
   - 西校区图书馆-三层自习室
