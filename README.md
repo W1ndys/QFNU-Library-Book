@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 ### 配置程序
 
-打开配置文件 `py/config.json` ，根据注释修改配置项。
+打开配置文件 `py/config.yml` ，根据注释修改配置项。
 
 1. `USERNAME`：图书馆账号
 2. `PASSWORD`：图书馆密码
